@@ -1,0 +1,26 @@
+{
+  "name": "mtg-social",
+  "version": "1.0.0",
+  "description": "MTG Market and Meeting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjhelm/mtg-social.git"
+  },
+  "author": "Ryan Helm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rjhelm/mtg-social/issues"
+  },
+  "homepage": "https://github.com/rjhelm/mtg-social#readme",
+  "dependencies": {
+    "apollo-server-express": "^2.25.2",
+    "express": "^4.17.1",
+    "graphql": "^15.5.1",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.12.14"
+  }
+}
