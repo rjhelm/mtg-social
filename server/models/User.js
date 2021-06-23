@@ -1,76 +1,64 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const UserSchema = new Schema ({
-    name: {
-        type: String,
-        trim: true,
-        required: true
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
     },
     email: {
-        type: String,
-        trim: true,
-        unique: true,
-        match: [/.+\@.+\..+/],
-        required: true
+      type: String,
+      required: true,
+      unique: true,
+      match: [/.+@.+\..+/, 'Must match an email address!']
     },
-    hashed_password: {
-        type: String,
-        required: true
+    password: {
+      type: String,
+      required: true,
+      minlength: 5
     },
-    salt: String,
-    updated: Date, 
-    created: {
-        type: Date,
-        default: Date.now
-    },
-    about: {
-        type: String,
-        trim: true
-    },
-    photo: {
-        data: Buffer,
-        type: String
-    },
-    following: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    followers: [{type: Schema.Types.ObjectId, ref: 'User'}]
-})
-
-UserSchema.virtual('password').set((password) => {
-    this._password = password
-    this.salt = this.makeSalt()
-    this.hashed_password = this.encryptPassword(password)
-}).get(() => {
-    return this._password
-})
-
-UserSchema.path('hashed_password').validate((v) => {
-    if (this._password && this._password.length < 6) {
-        this.invalidate('password', 'Password must be 6 characters or more')
+    post: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+      }
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ]
+  },
+  {
+    toJSON: {
+      virtuals: true
     }
-    if (this.isNew && !this._password) {
-        this.invalidate('password', 'Password is required')
-    }
-}, null)
+  }
+);
 
-UserSchema.methods = {
-    authenticate: ((plainText) => {
-        return this.encryptPassword(plainText) === this.hashed_password
-    }),
-    encryptPassword: ((plainText) => {
-        if (!password) return ''
-        try {
-            return crypto
-            .createHmac('sha1', this.salt)
-            .update(password)
-            .digest('hex')
-        } catch (err) {
-            return ''
-        }
-    }),
-    makeSalt: (() => {
-        return Math.round((new Date().valueOf() * Math.random())) + ''
-    })
-}
+// set up pre-save middleware to create password
+userSchema.pre('save', async function(next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
 
-module.exports = mongoose.model('User', UserSchema);
+  next();
+});
+
+// compare the incoming password with the hashed password
+userSchema.methods.isCorrectPassword = async function(password) {
+  return bcrypt.compare(password, this.password);
+};
+
+userSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
+});
+
+const User = model('User', userSchema);
+
+module.exports = User;

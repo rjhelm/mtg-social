@@ -1,22 +1,37 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reaction');
+const dateFormat = require('../utils/dateFormat');
 
-const PostSchema = new Schema({
-    text: {
-        type: String,
-        reqired: true
+const PostSchema = new Schema(
+  {
+    postText: {
+      type: String,
+      required: 'You need to leave a thought!',
+      minlength: 1,
+      maxlength: 280
     },
-    photo: {
-        data: Buffer,
-        type: String
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: timestamp => dateFormat(timestamp)
     },
-    comments: [{
-        text: String,
-        created: { type: Date, default: Date.now },
-        postedBy: { type: Schema.Types.ObjectId, ref: 'User' }
-    }],
-    postedBy: { type: Schema.Types.ObjectId, ref: 'User' },
-    created: { type: Date, default: Date.now }
-})
+    username: {
+      type: String,
+      required: true
+    },
+    reactions: [CommentSchema]
+  },
+  {
+    toJSON: {
+      getters: true
+    }
+  }
+);
 
-module.exports = mongoose.model('Post', PostSchema);
+PostSchema.virtual('commentCount').get(function() {
+  return this.comment.length;
+});
+
+const Post = model('Post', PostSchema);
+
+module.exports = Post;
