@@ -203,3 +203,99 @@ const createNewPost = async (req, res) => {
         res.status(201).json(populatedPost);
 };
 
+const updatePost = async (req, res) => {
+    const { id } = req.params;
+
+    const { textSubmission, linkSubmission, imageSubmission } = req.body;
+    const post = await Post.findById(id);
+    const author = await User.findById(req.user);
+    if (!post) {
+        return res.status(404).send({ message: `Post with ID: '${id} does not exist in database` });
+    }
+    if (!author) {
+        return res.status(404).send({ message: 'User does not exist in database' });
+    } 
+
+    if (post.author.toString() !== author._id.toString()) {
+        return res.status(401).send({ message: 'Access is denied' });
+    }
+    const validatedFields = postTypeValidator(
+        post.postType,
+        textSubmission,
+        linkSubmission,
+        imageSubmission,
+    );
+    switch (post.postType) {
+        case 'Text':
+            post.textSubmission = validationFields.textSubmission;
+            break;
+        case 'Link':
+            post.linkSubmission = validationFields.linkSubmission;
+            break;
+        case 'Image': {
+            const uploadedImage = await cloudinary.uploader.upload(
+                imageSubmission,
+                {
+                    upload_preset: UPLOAD_PRESET,
+                },
+                (error) => {
+                    if (error) return res.status(401).send({ message: error.message });
+                }
+            );
+            post.imageSubmission = {
+                imageLink: uploadedImage.url,
+                imageId: uploadedImage.public_id,
+            };
+            break;
+        }
+        default: 
+        return res.status(403).send({ message: 'Invalid post type' });
+    }
+    post.updatedAt = Date.now();
+    const savedPost = await post.save();
+    const populatedPost = await savedPost
+        .populate('author', 'username')
+        .populate('section', 'sectionName')
+        .populate('comments.commentedBy', 'username')
+        .populate('comments.replies.repliedBy', 'username')
+        .execPopulate();
+
+        res.status(202).json(populatedPost);
+};
+
+const deletePost = async (req, res) => {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    const author = await User.findById(req.user);
+
+    if (!post) {
+        return res.status(404).send({ message: `Post with ID: ${id} does not exist in database.` });
+    }
+    if (!author) {
+        return res.status(404).send({ message: 'User does not exist in database.' });
+    }
+    if (post.author.toString() !== author._id.toString()) {
+        return res.status(401).send({ message: 'Access is denied.' });
+    }
+    const section = await Section.findById(post.section);
+    if (!section) {
+        return res.status(404).send({ message: `Section with ID: '${section._id}'  does not exist in database.` });
+    }
+    await Post.findByIdAndDelete(id);
+    section.posts = section.posts.filter((p) => p.toString() !== id);
+    await section.save();
+    author.posts = author.posts.filter((p) => p.toString() !== id);
+    await author.save();
+
+    res.status(204).end();
+};
+
+module.exports = {
+    getPosts,
+    getSubscribedPosts,
+    getSearchedPosts,
+    getPostAndComments,
+    createNewPost,
+    updatePost,
+    deletePost,
+};
