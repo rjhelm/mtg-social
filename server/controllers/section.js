@@ -81,7 +81,7 @@ const createNewSection = async (req, res) => {
         return res.status(404).send({ message: 'User does not exist in database' });
     }
     const existingSection = await Section.findOne({
-        sectionName: { $regex: new RegExp('^' + sectionName + '$', 'i') };
+        sectionName: { $regex: new RegExp('^' + sectionName + '$', 'i') },
     });
     if (existingSection) {
         return res.status(403).send({ message: `Section exists with the name '${sectionName}'. Try another` });
@@ -93,7 +93,7 @@ const createNewSection = async (req, res) => {
         subsciberCount: 1,
     });
     const savedSection = await newSection.save();
-    admin.subscribedSubs = admin.subscribedSubs.concat(savedSection._id);
+    admin.subscribedSec = admin.subscribedSec.concat(savedSection._id);
     await admin.save();
 
     res.status(200).json(savedSection);
@@ -126,3 +126,31 @@ const editDescription = async (req, res) => {
     res.status(200).end();
 };
 
+const subscribeToSection = async (req, res) => {
+    const { id } = req.params;
+
+    const section = await Section.findById(id);
+    const user = await User.findById(req.user);
+
+    if (section.subscibedBy.includes(user.id.toString())) {
+        section.subscibedBy = section.subscibedBy.filter(
+            (s) => s.toString() !== section._id.toString()
+        );
+    } else {
+        section.subscibedBy = section.subscibedBy.concat(user._id);
+        user.subscribedSec = user.subscribedSec.concat(section._id);
+    }
+    section.subscriberCount = section.subscibedBy.length;\
+    await section.save();
+    await user.save();
+    res.status(200).end();
+}
+
+module.exports = {
+    getSections,
+    getSectionPosts,
+    getTopSections,
+    createNewSection,
+    editDescription,
+    subscribeToSection,
+};
