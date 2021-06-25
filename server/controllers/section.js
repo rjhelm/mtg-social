@@ -140,7 +140,7 @@ const subscribeToSection = async (req, res) => {
         section.subscibedBy = section.subscibedBy.concat(user._id);
         user.subscribedSec = user.subscribedSec.concat(section._id);
     }
-    section.subscriberCount = section.subscibedBy.length;\
+    section.subscriberCount = section.subscibedBy.length;
     await section.save();
     await user.save();
     res.status(200).end();
