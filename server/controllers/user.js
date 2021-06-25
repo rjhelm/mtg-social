@@ -25,11 +25,61 @@ const getUser = async (req, res) => {
         .populate('author', 'username')
         .populate('section', 'sectionName')
 
-        const paginatedPosts = {
-            previous: paginated.results.previous,
-            results: userPosts,
-            next: paginated.results.next,
-        };
-        res.status(200).json({ userDetails: user, posts: paginatedPosts });
+    const paginatedPosts = {
+        previous: paginated.results.previous,
+        results: userPosts,
+        next: paginated.results.next,
+    };
+    res.status(200).json({ userDetails: user, posts: paginatedPosts });
 };
 
+const setUserAvatar = async (req, res) => {
+    const { avatarImage } = req.body;
+    if (!avatarImage) {
+        return res.status(400).send({ message: 'Image URL required' });
+    }
+
+    const user = await User.findById(req.user);
+    if (!user) {
+        return res.status(404).send({ message: 'User does not exist in database' });
+    }
+
+    const uploadedImage = await cloudinary.uploader.upload(
+        avatarImage,
+        {
+            upload_preset: UPLOAD_PRESET,
+        },
+        (error) => {
+            if (error) return res.status(401).send({ message: error.message });
+        }
+    );
+
+    user.avatar = {
+        exists: true,
+        imageLink: uploadedImage.url,
+        imageId: uploadedImage.public_id,
+    };
+
+    const savedUser = await user.save();
+    res.status(201).json({ avatar: savedUser.avatar });
+};
+
+
+const removeUserAvatar = async (req, res) => {
+    const user = await User.findById(req.user);
+
+    if (!user) {
+        return res.status(404).send({ message: 'User does not exist in database.' });
+    }
+
+    user.avatar = {
+        exists: false,
+        imageLink: 'null',
+        imageId: 'null',
+    };
+
+    await user.save();
+    res.status(204).end();
+};
+
+module.exports = { getUser, setUserAvatar, removeUserAvatar };
