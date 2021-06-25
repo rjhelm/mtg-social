@@ -64,3 +64,65 @@ const getSectionPosts = async (req, res) => {
         res.status(200).json({ secDetails: section, posts: paginatedPosts });
 };
 
+const getTopSections = async (_req, res) => {
+    const topSections = await Section.find({})
+        .sort({ subsciberCount: -1 })
+        .limit(15)
+        .select('-description -posts -admin');
+
+        res.status(200).json(topSections);
+}
+
+const createNewSection = async (req, res) => {
+    const { sectionName, description } = req.body;
+
+    const admin = await User.findById(req.user);
+    if (!admin) {
+        return res.status(404).send({ message: 'User does not exist in database' });
+    }
+    const existingSection = await Section.findOne({
+        sectionName: { $regex: new RegExp('^' + sectionName + '$', 'i') };
+    });
+    if (existingSection) {
+        return res.status(403).send({ message: `Section exists with the name '${sectionName}'. Try another` });
+    }
+    const newSection = new Section({
+        sectionName,
+        description,
+        admin: admin._id,
+        subsciberCount: 1,
+    });
+    const savedSection = await newSection.save();
+    admin.subscribedSubs = admin.subscribedSubs.concat(savedSection._id);
+    await admin.save();
+
+    res.status(200).json(savedSection);
+};
+
+const editDescription = async (req, res) => {
+    const { description } = req.body;
+    const { id } = req.params;
+
+    if (!description) {
+        return res.status(400).send({ message: 'Description body cant be empty' });
+    }
+
+    const admin = await User.findById(req.user);
+    const section = await Section.findById(id);
+
+    if (!admin) {
+        return res.status(404).send({ message: 'User does not exist in database.' });
+    }
+    if (!section) {
+        return res.status(404).send({ message: `Section with ID: ${id} does not exist in database.`, });
+    }
+
+    if (section.admin.toString() !== admin._id.toString()) {
+        return res.status(401).send({ message: 'Access is denied.' });
+    }
+
+    section.description = description;
+    await section.save();
+    res.status(200).end();
+};
+
