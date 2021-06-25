@@ -123,3 +123,83 @@ const getSearchedPosts = async (req, res) => {
         res.status(200).json(paginatedPosts);
 };
 
+const getPostAndComments = async (req, res) => {
+    const { id } = req.params;
+
+    const post = await Post.findById(id);
+    if (!post) {
+        return res.status(404).send({ message: `Post with ID: '${id}' does not exist in database` });
+    }
+
+    const populatedPost = await post
+        .populate('author', 'username')
+        .populate('section', 'sectionName')
+        .populate('comments.commentedBy', 'username')
+        .populate('comments.replies.repliedBy', 'username')
+        .execPopulate();
+        res.status(200).json(populatedPost);
+};
+
+const createNewPost = async (req, res) => {
+    const {
+        title,
+        section,
+        postType,
+        textSubmission,
+        linkSubmission,
+        imageSubmission,
+    } = req.body;
+
+    const validatedFields = postTypeValidator(
+        postType,
+        textSubmission,
+        linkSubmission,
+        imageSubmission,
+    );
+    const author = await User.findById(req.user);
+    const targetSection = await Section.findById(section);
+
+    if (!author) {
+        return res.status(404).send({ message: 'User does not exist in database '});
+    }
+    if (!targetSection) {
+        return res.status(404).send({ message: `Section with ID: '${section}' does not exist in database` });
+    }
+    const newPost = new Post({
+        title,
+        section,
+        author: author._id,
+        upvotedBy: [author._id],
+        pointsCount: 1,
+        ...validatedFields
+    });
+    if (postType === 'Image') {
+        const uploadedImage = await cloudinary.uploader.upload(
+            imageSubmission,
+            {
+                upload_preset: UPLOAD_PRESET,
+            },
+            (error) => {
+                if (error) return res.status(401).send({ message: error.message });
+            }
+        );
+        newPost.imageSubmission = {
+            imageLink: uploadedImage.url,
+            imageId: uploadedImage.public_id,
+        };
+    }
+    const savedPost = await newPost.save();
+
+    targetSection.posts = targetSection.posts.concat(savedPost._id);
+    await targetSection.save();
+    author.posts = author.posts.concat(savedPost._id);
+    author.karmaPoints.postKarma++;
+    await author.save();
+
+    const populatedPost = await savedPost
+        .populate('author', 'username')
+        .populate('section', 'sectionName')
+        .execPopulate();
+        res.status(201).json(populatedPost);
+};
+
