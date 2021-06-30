@@ -13,13 +13,15 @@ const App = () => {
   const classes = useBodyStyles();
 
   return (
-    // <ThemeProvider theme={customTheme(darkMode)}>
-    //   <Paper className={classes.root} elevation={0}>
-    //     <ToastNotification />
-    //     <NavBar />
-    //     <Routes />
-    //   </Paper>
-    // </ThemeProvider>
+    <div>
+    {/* <ThemeProvider theme={customTheme(darkMode)}>
+      <Paper className={classes.root} elevation={0}>
+        <ToastNotification />
+        <NavBar />
+        <Routes />
+      </Paper>
+    </ThemeProvider> */}
+    </div>
   );
 };
 
