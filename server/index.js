@@ -1,25 +1,17 @@
-const { ApolloServer, PubSub } = require('apollo-server-express');
-const { PORT } = require('./utils/config');
-const typeDefs = require('./server/typeDefs');
-const resolvers = require('./resolvers');
-const app = require('./app');
-const http = require('http');
+const { ApolloServer } = require('apollo-server');
 const connectToDB = require('./db');
+const typeDefs = require('./graphql/typeDefs');
+const resolvers = require('./graphql/resolvers');
+const { PORT } = require('./utils/config');
 
 connectToDB();
 
-const server = http.createServer(app);
-
-const pubsub = new PubSub();
-
-const PORT = process.env || 3000;
-
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: ({ req }) => ({ req, pubsub })
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ req }),
 });
 
-server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+server.listen({ port: PORT }).then(({ url }) => {
+  console.log(`Server ready at ${url}`);
 });

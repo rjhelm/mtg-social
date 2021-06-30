@@ -1,19 +1,12 @@
 const mongoose = require('mongoose');
 const commentSchema = require('./comment').schema;
-const replySchema = require('./reply').schema;
 const schemaCleaner = require('../utils/schemaCleaner');
 
-const postSchema = new mongoose.Schema({
+const replySchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 15,
   },
   body: {
     type: String,
@@ -21,9 +14,7 @@ const postSchema = new mongoose.Schema({
     trim: true,
     minlength: 30,
   },
-  tags: [{ type: String, required: true, trim: true }],
   comments: [commentSchema],
-  replies: [replySchema],
   points: {
     type: Number,
     default: 0,
@@ -40,12 +31,6 @@ const postSchema = new mongoose.Schema({
       ref: 'User',
     },
   ],
-  views: { type: Number, default: 0 },
-  hotAlgo: { type: Number, default: Date.now },
-  acceptedAnswer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Answer',
-  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -56,6 +41,6 @@ const postSchema = new mongoose.Schema({
   },
 });
 
-schemaCleaner(postSchema);
+schemaCleaner(replySchema);
 
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('Reply', replySchema);
