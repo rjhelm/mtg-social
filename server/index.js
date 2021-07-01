@@ -3,6 +3,7 @@ const connectToDB = require('./db');
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const { PORT } = require('./utils/config');
+const concurrently = require('concurrently');
 
 connectToDB();
 
@@ -10,6 +11,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => ({ req }),
+  // uri: 'https://localhost:4000/graphql',
 });
 
 server.listen({ port: PORT }).then(({ url }) => {

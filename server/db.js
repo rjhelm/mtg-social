@@ -3,7 +3,7 @@ const { MONGODB_URI: url } = require('./utils/config');
 
 const connectToDB = async () => {
   try {
-    await mongoose.connect(url ||  {
+    await mongoose.connect(url || 'mongodb://localhost:27017/mtg', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
