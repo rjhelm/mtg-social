@@ -24,7 +24,7 @@ export const LOGIN_USER = gql`
   ${LOGGED_USER_DETAILS}
 `;
 
-export const POST_POST = gql`
+export const NEW_POST = gql`
   mutation addPost($title: String!, $body: String!, $tags: [String!]!) {
     postPost(title: $title, body: $body, tags: $tags) {
       ...PostDetails
