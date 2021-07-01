@@ -8,8 +8,7 @@
     "seed": "node seeders/seeds.js",
     "dev": "nodemon index.js"
   },
-  "author": "Amandeep",
-  "license": "ISC",
+  "author": "Ryan Helm",
   "dependencies": {
     "apollo-server": "^2.18.2",
     "apollo-server-express": "^2.25.2",
