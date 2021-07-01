@@ -14,7 +14,7 @@ import PostReplyDetails from './PostReplyDetails';
 import ReplyList from './ReplyList';
 import ReplyForm from './ReplyForm';
 import { upvote, downvote } from '../utils/votePostReply';
-import { getErrorMsg } from '../utils/helperFuncs';
+import { getErrorMsg } from '../utils/helpers';
 
 import { Divider } from '@material-ui/core';
 import { usePostPageStyles } from '../styles/muiStyles';
@@ -113,7 +113,7 @@ const PostPageContent = ({ post }) => {
 
   const editPost = () => {
     setEditValues({ postId, title, body, tags });
-    history.push('/ask');
+    history.push('/post');
   };
 
   const deletePost = () => {

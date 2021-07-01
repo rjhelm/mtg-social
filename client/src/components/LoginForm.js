@@ -133,7 +133,7 @@ const LoginForm = ({ setAuthType, closeModal }) => {
       <Typography variant="body1" className={classes.footerText}>
         Not a Commander?{' '}
         <Link onClick={() => setAuthType('signup')} className={classes.link}>
-          Sign Up || Join the Command Tower
+          Sign Up || Become a Commander
         </Link>
       </Typography>
       <ErrorMessage

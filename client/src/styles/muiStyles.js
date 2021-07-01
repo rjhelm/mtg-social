@@ -69,7 +69,7 @@ export const useMenuStyles = makeStyles(
     },
     closeIcon: {
       boxSizing: 'border-box',
-      border: `0.5px solid ${theme.palette.primary.main}60`,
+      border: `0.5px solid ${theme.palette.gold.main}60`,
       borderRadius: 3,
     },
     rootPanel: {
@@ -150,7 +150,7 @@ export const usePostListStyles = makeStyles(
       width: '50%',
       display: 'flex',
     },
-    noQuesText: {
+    noPostText: {
       textAlign: 'center',
       marginTop: '2em',
     },
@@ -171,10 +171,10 @@ export const useRightSidePanelStyles = makeStyles(
       marginTop: '1em',
     },
     tagsColumn: {
-      border: `1px solid ${theme.palette.primary.main}50`,
+      border: `1px solid ${theme.palette.gold.main}50`,
       borderRadius: 4,
       padding: '0.8em',
-      backgroundColor: `${theme.palette.primary.main}08`,
+      backgroundColor: `${theme.palette.gold.main}08`,
     },
     tagsWrapper: {
       marginTop: '1em',
@@ -224,7 +224,7 @@ export const usePostCardStyles = makeStyles(
       display: 'flex',
       flexDirection: 'column',
     },
-    quesDetails: {
+    postDetails: {
       paddingLeft: '0.2em',
       paddingBottom: '0.7em',
       display: 'flex',
@@ -254,10 +254,10 @@ export const usePostCardStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       marginTop: '0.7em',
-      backgroundColor: `${theme.palette.primary.main}10`,
+      backgroundColor: `${theme.palette.gold.main}10`,
       padding: '0.4em',
       borderRadius: 3,
-      border: `1px solid ${theme.palette.primary.main}40`,
+      border: `1px solid ${theme.palette.gold.main}40`,
     },
     homeAvatar: {
       width: theme.spacing(4),
@@ -265,7 +265,7 @@ export const usePostCardStyles = makeStyles(
       marginRight: '0.4em',
       borderRadius: 2,
     },
-    quesAnsAvatar: {
+    postReplyAvatar: {
       width: theme.spacing(5),
       height: theme.spacing(5),
       marginRight: '0.4em',
@@ -418,7 +418,7 @@ export const usePostPageStyles = makeStyles(
         flexWrap: 'wrap',
       },
     },
-    quesInfo: {
+    postInfo: {
       display: 'flex',
       paddingBottom: '0.8em',
     },
@@ -427,7 +427,7 @@ export const usePostPageStyles = makeStyles(
       width: '100%',
       paddingBottom: '1em',
     },
-    quesAnsWrapper: {
+    postReplyWrapper: {
       display: 'flex',
       marginBottom: '1em',
     },
@@ -437,7 +437,7 @@ export const usePostPageStyles = makeStyles(
       width: 30,
       alignItems: 'center',
     },
-    quesBody: {
+    postBody: {
       padding: '0.6em 1em',
       paddingBottom: 0,
       width: '100%',
@@ -529,7 +529,7 @@ export const useUserPageStyles = makeStyles(
       },
     },
     userCard: {
-      backgroundColor: `${theme.palette.primary.main}15`,
+      backgroundColor: `${theme.palette.gold.main}15`,
       padding: '1.6em',
       height: '12.5em',
       textAlign: 'center',
@@ -585,7 +585,7 @@ export const useUserPageStyles = makeStyles(
     recentActivity: {
       marginTop: '1em',
     },
-    recentQuesAns: {
+    recentPostReply: {
       display: 'flex',
       padding: '0.5em 0',
       alignItems: 'center',
@@ -621,7 +621,7 @@ export const useNewPostStyles = makeStyles(
       marginTop: '1em',
       padding: '0.4em 1em',
     },
-    quesForm: {
+    postForm: {
       paddingTop: '0.8em',
     },
     inputWrapper: {

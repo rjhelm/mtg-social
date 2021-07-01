@@ -187,7 +187,7 @@ const RegisterForm = ({ setAuthType, closeModal }) => {
           type="submit"
           disabled={loading}
         >
-          Sign Up || Join Command Tower
+          Sign Up || Become a Commander
         </Button>
       </form>
       <Typography variant="body1" className={classes.footerText}>

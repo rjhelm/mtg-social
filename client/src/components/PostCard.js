@@ -26,16 +26,16 @@ const PostCard = ({ post }) => {
           <Typography variant="body2" className={classes.mainText}>
             {points}
           </Typography>
-          <Typography variant="caption">votes</Typography>
+          <Typography variant="caption">Votes</Typography>
         </div>
         <div className={classes.innerInfo}>
           <Typography variant="body2" className={classes.mainText}>
             {replyCount}
           </Typography>
-          <Typography variant="caption">replies</Typography>
+          <Typography variant="caption">Replies</Typography>
         </div>
         <Typography variant="caption" noWrap>
-          {views} views
+          {views} Views
         </Typography>
       </div>
       <div className={classes.quesDetails}>
