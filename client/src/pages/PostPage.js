@@ -8,7 +8,7 @@ import PostPageContent from '../components/PostPageContent';
 import RightSidePanel from '../components/RightSidePanel';
 import AuthFormModal from '../components/AuthFormModal';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { formatDateAgo, getErrorMsg } from '../utils/helperFuncs';
+import { formatDateAgo, getErrorMsg } from '../utils/helpers';
 
 import {
   Typography,

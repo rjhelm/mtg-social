@@ -8,11 +8,11 @@ import {
   DialogContentText,
   DialogActions,
 } from '@material-ui/core';
-import { useQuesPageStyles } from '../styles/muiStyles';
+import { usePostPageStyles } from '../styles/muiStyles';
 
 const DeleteDialog = ({ handleDelete, bodyType }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const classes = useQuesPageStyles();
+  const classes = usePostPageStyles();
 
   const handleModalOpen = () => {
     setModalOpen(true);

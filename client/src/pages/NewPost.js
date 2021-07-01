@@ -7,7 +7,7 @@ import { useStateContext } from '../context/state';
 import ErrorMessage from '../components/ErrorMessage';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getErrorMsg } from '../utils/helperFuncs';
+import { getErrorMsg } from '../utils/helpers';
 
 import {
   Typography,

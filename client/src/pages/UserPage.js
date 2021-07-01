@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link as RouterLink } from "react-router-dom";
 import { useLazyQuery } from "@apollo/client";
 import { GET_USER } from "../graphql/queries";
-/*import components when done */
+import RecentPosts from '../components/RecentPosts';
+import LoadingSpinner from '../components/LoadingSpinner';
 import { useStateContext } from "../context/state";
 import { formatDateAgo, getErrorMsg } from "../utils/helpers";
 import { Avatar, Typography, Divider } from "@material-ui/core";
@@ -32,7 +33,7 @@ function UserPage() {
   if (loading || !fetchedUser) {
     return (
       <div style={{ minWidth: '100%', marginTop: '20%' }}>
-        {/* <LoadingSpinner size={80} /> */}
+        <LoadingSpinner size={80} />
       </div>
     );
   }
@@ -124,7 +125,7 @@ function UserPage() {
             {recentPosts.length !== 0 ? (
               recentPosts.map((q) => (
                 <div key={q.id}>
-                  {/* <RecentPosts post={q} /> */}
+                  <RecentPosts post={q} />
                   <Divider />
                 </div>
               ))

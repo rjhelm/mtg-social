@@ -9,6 +9,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "apollo-link-context": "^1.0.20",
+    "concurrently": "^6.2.0",
     "date-fns": "^2.16.1",
     "graphql": "^15.4.0",
     "react": "^17.0.1",
@@ -21,7 +22,7 @@
     "yup": "^0.30.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"cd .. && cd server && node index\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

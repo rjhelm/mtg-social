@@ -8,7 +8,7 @@ const {
   paginateResults,
   upvoteIt,
   downvoteIt,
-  quesRep,
+  postRep,
 } = require('../../utils/helperFuncs');
 
 module.exports = {
@@ -103,11 +103,11 @@ module.exports = {
     },
   },
   Mutation: {
-    postPost: async (_, args, context) => {
+    newPost: async (_, args, context) => {
       const loggedUser = authChecker(context);
       const { title, body, tags } = args;
 
-      const { errors, valid } = postValidator(title, body, tags);
+      const { errors, valid } = postValidator(title, body);
       if (!valid) {
         throw new UserInputError(Object.values(errors)[0], { errors });
       }
@@ -117,7 +117,6 @@ module.exports = {
         const newPost = new Post({
           title,
           body,
-          tags,
           author: author._id,
         });
         const savedPost = await newPost.save();

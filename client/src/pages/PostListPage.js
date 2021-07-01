@@ -9,7 +9,7 @@ import PostCard from '../components/PostCard';
 import AuthFormModal from '../components/AuthFormModal';
 import LoadMoreButton from '../components/LoadMoreButton';
 import LoadingSpinner from '../components/LoadingSpinner';
-import { filterDuplicates, getErrorMsg } from '../utils/helperFuncs';
+import { filterDuplicates, getErrorMsg } from '../utils/helpers';
 
 import { Typography, Button, Divider, useMediaQuery } from '@material-ui/core';
 import { usePostListStyles } from '../styles/muiStyles';

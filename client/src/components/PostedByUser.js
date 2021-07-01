@@ -1,5 +1,5 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { formatDateAgo, formatDayTime } from '../utils/helperFuncs';
+import { formatDateAgo, formatDayTime } from '../utils/helpers';
 import { Typography, Link, Avatar } from '@material-ui/core';
 import { usePostCardStyles } from '../styles/muiStyles';
 

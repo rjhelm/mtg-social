@@ -7,8 +7,8 @@ import { useStateContext } from '../context/state';
 import ErrorMessage from './ErrorMessage';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-import { getErrorMsg } from '../utils/helperFuncs';
+import logo from '../svg/logo.svg';
+import { getErrorMsg } from '../utils/helpers';
 
 import {
   TextField,
@@ -61,7 +61,7 @@ const LoginForm = ({ setAuthType, closeModal }) => {
 
   return (
     <div className={classes.root}>
-      <img src=" " alt="mtg" className={classes.titleLogo} />
+      <img src={logo} alt="mtg" className={classes.titleLogo} />
       <form onSubmit={handleSubmit(onLogin)}>
         <div className={classes.inputField}>
           <TextField

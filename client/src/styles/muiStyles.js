@@ -30,7 +30,7 @@ export const useNavStyles = makeStyles(
     logo: {
       fontFamily: 'Montserrat',
       textTransform: 'none',
-      fontSize: '1.3em',
+      fontSize: '1.5em',
       padding: '0.1em',
       marginRight: '0.3em',
     },
@@ -39,7 +39,7 @@ export const useNavStyles = makeStyles(
       alignItems: 'center',
     },
     appBar: {
-      borderTop: '4px solid #f4649f',
+      borderTop: '4px solid black',
     },
     searchBar: {
       flexGrow: 0.6,
@@ -65,11 +65,11 @@ export const useMenuStyles = makeStyles(
   (theme) => ({
     menuIcon: {
       marginRight: '6px',
-      fontSize: '1.3em',
+      fontSize: '1.5em',
     },
     closeIcon: {
       boxSizing: 'border-box',
-      border: `0.5px solid ${theme.palette.gold.main}60`,
+      border: `0.5px solid ${theme.palette.primary.main}60`,
       borderRadius: 3,
     },
     rootPanel: {
@@ -171,10 +171,10 @@ export const useRightSidePanelStyles = makeStyles(
       marginTop: '1em',
     },
     tagsColumn: {
-      border: `1px solid ${theme.palette.gold.main}50`,
+      border: `1px solid ${theme.palette.primary.main}50`,
       borderRadius: 4,
       padding: '0.8em',
-      backgroundColor: `${theme.palette.gold.main}08`,
+      backgroundColor: `${theme.palette.primary.main}08`,
     },
     tagsWrapper: {
       marginTop: '1em',
@@ -254,10 +254,10 @@ export const usePostCardStyles = makeStyles(
       display: 'flex',
       alignItems: 'center',
       marginTop: '0.7em',
-      backgroundColor: `${theme.palette.gold.main}10`,
+      backgroundColor: `${theme.palette.primary.main}10`,
       padding: '0.4em',
       borderRadius: 3,
-      border: `1px solid ${theme.palette.gold.main}40`,
+      border: `1px solid ${theme.palette.primary.main}40`,
     },
     homeAvatar: {
       width: theme.spacing(4),
@@ -314,7 +314,7 @@ export const useAuthFormStyles = makeStyles(
     },
     titleLogo: {
       display: 'block',
-      width: '5em',
+      width: '17em',
       margin: '0 auto 2em auto',
     },
     footerText: {
@@ -529,7 +529,7 @@ export const useUserPageStyles = makeStyles(
       },
     },
     userCard: {
-      backgroundColor: `${theme.palette.gold.main}15`,
+      backgroundColor: `${theme.palette.primary.main}15`,
       padding: '1.6em',
       height: '12.5em',
       textAlign: 'center',
@@ -645,11 +645,11 @@ export const useNewPostStyles = makeStyles(
 export const useVoteBtnsStyles = makeStyles(
   (theme) => ({
     icon: {
-      color: '#aa9aaa',
+      color: 'gold',
       fontSize: 32,
     },
     checkedIcon: {
-      color: '#964ec2',
+      color: 'black',
       fontSize: 32,
     },
   }),

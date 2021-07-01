@@ -7,7 +7,7 @@ import UserMenuDesktop from './UserMenuDesktop';
 import SearchBar from './SearchBar';
 import DarkModeSwitch from './DarkModeSwitch';
 import { useAuthContext } from '../context/auth';
-
+import logo from '../svg/logo.svg';
 
 import {
   AppBar,
@@ -21,8 +21,8 @@ import {
 } from '@material-ui/core';
 import { useNavStyles } from '../styles/muiStyles';
 import { useTheme } from '@material-ui/core/styles';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import SearchIcon from '@material-ui/icons/Search';
+import CasinoIcon from '@material-ui/icons/Casino';
+import YoutubeSearchedForIcon from '@material-ui/icons/YoutubeSearchedFor';
 
 const NavBar = () => {
   const { user, logoutUser } = useAuthContext();
@@ -63,7 +63,7 @@ const NavBar = () => {
                     component={RouterLink}
                     to="/"
                   >
-                    <img src=" " width="25px" alt="sof-logo" />
+                    <img src={logo} width="96px" alt="mtg-logo" />
                   </IconButton>
                 ) : (
                   <Button
@@ -73,9 +73,9 @@ const NavBar = () => {
                     size="large"
                   >
                     <img
-                      src="  "
-                      width="28px"
-                      alt="sof-logo"
+                      src={logo}
+                      width="96px"
+                      alt="mtg-logo"
                       style={{ marginRight: '5px' }}
                     />
                     MTG<strong>Social</strong>
@@ -83,8 +83,8 @@ const NavBar = () => {
                 )}
                 {!isMobile && (
                   <Typography variant="caption" color="secondary">
-                    | ryanj_dev{' '}
-                    <FavoriteIcon style={{ fontSize: 12, color: 'gold' }} />{' '}
+                    | 
+                    <CasinoIcon style={{ fontSize: 15, color: 'red' }} />
                     
                     <Link
                       href={'https://github.com/rjhelm'}
@@ -106,7 +106,7 @@ const NavBar = () => {
                   className={classes.searchBtn}
                   onClick={() => setSearchOpen((prevState) => !prevState)}
                 >
-                  <SearchIcon />
+                  <YoutubeSearchedForIcon />
                 </IconButton>
                 <DarkModeSwitch />
                 <UserMenuMobile user={user} logoutUser={handleLogout} />

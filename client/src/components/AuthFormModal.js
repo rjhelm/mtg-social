@@ -20,6 +20,7 @@ import { useDialogStyles } from '../styles/muiStyles';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+
 const AuthFormModal = ({ closeMenu, buttonType }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [authType, setAuthType] = useState('login');

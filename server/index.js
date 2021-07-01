@@ -1,11 +1,18 @@
-const { ApolloServer } = require('apollo-server');
-const connectToDB = require('./db');
+const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const db = require('./db');
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const { PORT } = require('./utils/config');
 const concurrently = require('concurrently');
 
-connectToDB();
+db.once('open', () => {
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+    console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+  });
+});
+const app = express();
 
 const server = new ApolloServer({
   typeDefs,
@@ -14,6 +21,8 @@ const server = new ApolloServer({
   // uri: 'https://localhost:4000/graphql',
 });
 
-server.listen({ port: PORT }).then(({ url }) => {
-  console.log(`Server ready at ${url}`);
-});
+server.applyMiddleware({ app });
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+

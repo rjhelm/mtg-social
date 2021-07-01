@@ -1,9 +1,9 @@
 import { Button, CircularProgress } from '@material-ui/core';
-import { useQuesListStyles } from '../styles/muiStyles';
+import { usePostListStyles } from '../styles/muiStyles';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 const LoadMoreButton = ({ handleLoadPosts, loading }) => {
-  const classes = useQuesListStyles();
+  const classes = usePostListStyles();
 
   return (
     <div className={classes.loadBtnWrapper}>

@@ -4,7 +4,7 @@ import { GET_ALL_USERS } from '../graphql/queries';
 import { Link as RouterLink } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useStateContext } from '../context/state';
-import { formatDateAgo, getErrorMsg } from '../utils/helperFuncs';
+import { formatDateAgo, getErrorMsg } from '../utils/helpers';
 
 import {
   Typography,

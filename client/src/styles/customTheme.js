@@ -5,24 +5,24 @@ const customTheme = (darkMode) =>
     palette: {
       type: darkMode ? 'dark' : 'light',
       primary: {
-        main: darkMode ? '#c197db' : '#964ec2',
+        main: darkMode ? '#2a00e7' : '#f3cf06',
       },
       secondary: {
-        main: darkMode ? '#dbc3ea' : '#562873',
+        main: darkMode ? '#8b84e6' : '#003b03',
       },
     },
     overrides: {
       MuiMenuItem: {
         root: {
           '&$selected': {
-            borderRight: '2px solid #f4649f',
-            fontWeight: '700',
+            borderRight: '2px solid #000000',
+            fontWeight: '800',
           },
         },
       },
       MuiPopover: {
         paper: {
-          borderRadius: 2,
+          borderRadius: 3,
         },
       },
       MuiButton: {
@@ -37,7 +37,7 @@ const customTheme = (darkMode) =>
           padding: '0px',
         },
         outlined: {
-          backgroundColor: darkMode ? '#c197db15' : '#964ec215',
+          backgroundColor: darkMode ? '#004bbb48' : '#0669486e',
         },
       },
     },

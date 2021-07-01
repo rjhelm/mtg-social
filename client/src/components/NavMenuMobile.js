@@ -83,8 +83,8 @@ const MobileNavMenu = () => {
         <Divider />
         <div className={classes.madeByItem}>
           <Typography variant="caption" color="secondary">
-            ryanj_dev{' '}
-            <FavoriteIcon style={{ fontSize: 12, color: ' gold' }} /> {' '}
+            ryanj_dev
+            <FavoriteIcon style={{ fontSize: 12, color: ' gold' }} /> 
             <Link
               href={'https://github.com/rjhelm'}
               color="inherit"

@@ -4,7 +4,7 @@ import { GET_ALL_TAGS } from '../graphql/queries';
 import { Link as RouterLink } from 'react-router-dom';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useStateContext } from '../context/state';
-import { getErrorMsg } from '../utils/helperFuncs';
+import { getErrorMsg } from '../utils/helpers';
 
 import { Typography, Chip, TextField, InputAdornment } from '@material-ui/core';
 import { useTagsPageStyles } from '../styles/muiStyles';

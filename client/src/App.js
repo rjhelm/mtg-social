@@ -14,13 +14,13 @@ const App = () => {
 
   return (
     <div>
-    {/* <ThemeProvider theme={customTheme(darkMode)}>
+    <ThemeProvider theme={customTheme(darkMode)}>
       <Paper className={classes.root} elevation={0}>
         <ToastNotification />
         <NavBar />
         <Routes />
       </Paper>
-    </ThemeProvider> */}
+    </ThemeProvider>
     </div>
   );
 };
