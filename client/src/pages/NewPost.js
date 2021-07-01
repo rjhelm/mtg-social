@@ -17,7 +17,7 @@ import {
   Chip,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { useNewPostPageStyles } from '../styles/muiStyles';
+import { useNewPostStyles } from '../styles/muiStyles';
 
 const validationSchema = yup.object({
   title: yup
@@ -31,7 +31,7 @@ const validationSchema = yup.object({
 });
 
 const NewPostPage = () => {
-  const classes = useNewPostPageStyles();
+  const classes = useNewPostStyles();
   const history = useHistory();
   const { editValues, clearEdit, notify } = useStateContext();
   const [tagInput, setTagInput] = useState('');
