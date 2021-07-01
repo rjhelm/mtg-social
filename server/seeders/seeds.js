@@ -8,7 +8,7 @@ db.once('open', async () => {
     await Post.deleteMany({});
 
     const userData = [];
-    for (let i = 0; i < 50; i += 1) {
+    for (let i = 0; i < 20; i += 1) {
         const username = faker.internet.userName();
         const passwordHash = faker.internet.password();
 
@@ -18,7 +18,7 @@ db.once('open', async () => {
     const createdUsers = await User.collection.insertMany(userData);
 
     let createdPosts = [];
-    for (let i = 0; i < 50; i =+ 1) {
+    for (let i = 0; i < 20; i =+ 1) {
         const title = faker.lorem.words(Math.round(Math.random() * 10) + 15);
         const body = faker.lorem.words(Math.round(Math.random() * 10) + 30);
         const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);

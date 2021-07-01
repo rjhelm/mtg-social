@@ -155,7 +155,7 @@ module.exports = gql`
     register(username: String!, password: String!): LoggedUser!
     login(username: String!, password: String!): LoggedUser!
 
-    postPost(title: String!, body: String!, tags: [String!]!): Post!
+    newPost(title: String!, body: String!, tags: [String!]!): Post!
     deletePost(postId: ID!): ID!
     editPost(
       postId: ID!

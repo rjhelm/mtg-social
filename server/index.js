@@ -1,6 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const db = require('./db');
+const cors = require('cors')
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const { PORT } = require('./utils/config');
@@ -13,7 +14,7 @@ db.once('open', () => {
   });
 });
 const app = express();
-
+app.use(cors())
 const server = new ApolloServer({
   typeDefs,
   resolvers,
