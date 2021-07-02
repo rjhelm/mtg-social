@@ -20,6 +20,8 @@
     "if-env": "^1.0.4"
   },
   "devDependencies": {
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "css-loader": "^5.2.6",
+    "style-loader": "^3.0.0"
   }
 }
