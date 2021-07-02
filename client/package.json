@@ -2,6 +2,8 @@
   "name": "mtg-social",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
+
   "dependencies": {
     "@apollo/client": "^3.2.5",
     "@hookform/resolvers": "^1.0.1",

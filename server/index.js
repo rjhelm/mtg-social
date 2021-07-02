@@ -24,6 +24,9 @@ const server = new ApolloServer({
   context: ({ req }) => ({ req })
 });
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
 server.applyMiddleware({ app });
 

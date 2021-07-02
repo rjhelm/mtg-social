@@ -11,7 +11,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 const App = () => {
   const { darkMode } = useStateContext();
   const classes = useBodyStyles();
-
   return (
     <div>
     <ThemeProvider theme={customTheme(darkMode)}>
