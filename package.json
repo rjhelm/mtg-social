@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/rjhelm/mtg-social/issues"
   },
-  "homepage": "https://github.com/rjhelm/mtg-social#readme"
+  "dependencies": {
+    "if-env": "^1.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
 }

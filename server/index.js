@@ -5,7 +5,7 @@ const cors = require('cors')
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const { PORT } = require('./utils/config');
-const concurrently = require('concurrently');
+
 
 db.once('open', () => {
   app.listen(PORT, () => {
@@ -13,14 +13,17 @@ db.once('open', () => {
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
 });
+
 const app = express();
-app.use(cors())
+
+app.use(cors());
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => ({ req }),
-  // uri: 'https://localhost:4000/graphql',
+  context: ({ req }) => ({ req })
 });
+
 
 server.applyMiddleware({ app });
 
