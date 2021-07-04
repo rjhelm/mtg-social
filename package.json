@@ -22,7 +22,7 @@
     "yup": "^0.30.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"cd .. && cd server && node index\"",
+    "start": "concurrently \"react-scripts start\" \" cd server && node index\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
