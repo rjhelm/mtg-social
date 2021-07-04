@@ -1,1 +1,1 @@
-web: boot/bin
+web: npm start
