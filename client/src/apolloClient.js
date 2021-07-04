@@ -1,10 +1,10 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from 'apollo-link-context';
 import storage from './utils/localStorage';
-import backendUrl from './backendUrl';
+// import backendUrl from './backendUrl';
 
 const httpLink = new HttpLink({
-  uri: backendUrl,
+  uri: process.env.PORT,
 });
 
 const authLink = setContext(() => {
@@ -23,27 +23,27 @@ const client = new ApolloClient({
       Post: {
         fields: {
           upvotedBy: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
           downvotedBy: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
           comments: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
           replies: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
           tags: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
@@ -52,17 +52,17 @@ const client = new ApolloClient({
       Reply: {
         fields: {
           upvotedBy: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
           downvotedBy: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
           comments: {
-            merge(existing, incoming) {
+            merge(_existing, incoming) {
               return incoming;
             },
           },
