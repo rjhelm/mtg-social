@@ -5,7 +5,7 @@ const cors = require('cors')
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 const { PORT } = require('./utils/config');
-
+const path = require('path')
 
 db.once('open', () => {
   app.listen(PORT, () => {
@@ -25,8 +25,8 @@ const server = new ApolloServer({
 });
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build/index.html')));
-  res.sendFile(path.join('build', 'index.html'));
+  app.use(express.static(path.join(__dirname, '../build/index.html')));
+  
 }
 
 server.applyMiddleware({ app });
