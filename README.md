@@ -6,7 +6,11 @@
 * Full Stack Discussion Type app for Magic the Gathering Players.
 * Post game requests, deck questions, card discussion and more.
 
-![Login]()
+![Home](https://github.com/rjhelm/mtg-social/blob/main/assets/homepage.PNG?raw=true)
+![Login](https://github.com/rjhelm/mtg-social/blob/main/assets/login.PNG?raw=true)
+![Dark Mode](https://github.com/rjhelm/mtg-social/blob/main/assets/dark-mode.PNG?raw=true)
+![Logged In](https://github.com/rjhelm/mtg-social/blob/main/assets/logged-in.PNG?raw=true)
+
 ## Table of contents
 
 Use for instance <https://github.com/ekalinin/github-markdown-toc>:
