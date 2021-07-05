@@ -1,5 +1,5 @@
 # MTG Social
-
+* [Deployed MTG Social](https://socialist-loonie-29332.herokuapp.com/)
 ## About
 
 * This is a project utilizing MERN stack technology,
