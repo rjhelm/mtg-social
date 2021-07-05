@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
-const storageKeyToken = 'mtgUserKey';
-const storageKeyDarkMode = 'mtgDarkMode';
+const storageKeyToken = "mtgUserKey";
+const storageKeyDarkMode = "mtgDarkMode";
 
 const saveUser = (user) =>
   localStorage.setItem(storageKeyToken, JSON.stringify(user));
