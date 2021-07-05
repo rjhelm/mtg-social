@@ -30,5 +30,5 @@ db.once("open", () => {
 });
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "../client/build/index.html")));
+	app.use(express.static(path.join(__dirname, "./client/build/index.html")));
 }
