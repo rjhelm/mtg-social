@@ -14,15 +14,19 @@ const server = new ApolloServer({
 	context: ({ req }) => ({ req })
 });
 
-
+server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-server.applyMiddleware({ app });
+
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static(path.join(__dirname, "./client/build/index.html")));
 }
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
 
 db.once("open", () => {
 	app.listen(PORT, () => {
