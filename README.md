@@ -16,10 +16,9 @@ See real examples:
 
 Use for instance <https://github.com/ekalinin/github-markdown-toc>:
 
-> * [Title / Repository Name](#title--repository-name)
->   * [About / Synopsis](#about--synopsis)
+> * [mtg-social](#mtg-social)
+>   * [About](#about)
 >   * [Table of contents](#table-of-contents)
->   * [Installation](#installation)
 >   * [Usage](#usage)
 >     * [Screenshots](#screenshots)
 >     * [Features](#features)
@@ -33,13 +32,6 @@ Use for instance <https://github.com/ekalinin/github-markdown-toc>:
 >   * [Contributing / Reporting issues](#contributing--reporting-issues)
 >   * [License](#license)
 >   * [About Nuxeo](#about-nuxeo)
-
-## Installation
-
-Sample:
-
-* From the Nuxeo Marketplace: install [the Sample Nuxeo Package](https://connect.nuxeo.com/nuxeo/site/marketplace/package/nuxeo-sample).
-* From the command line: `nuxeoctl mp-install nuxeo-sample`
 
 ## Usage
 

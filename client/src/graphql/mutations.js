@@ -26,7 +26,7 @@ export const LOGIN_USER = gql`
 
 export const NEW_POST = gql`
   mutation addPost($title: String!, $body: String!, $tags: [String!]!) {
-    postPost(title: $title, body: $body, tags: $tags) {
+    newPost(title: $title, body: $body, tags: $tags) {
       ...PostDetails
     }
   }
@@ -65,7 +65,7 @@ export const VOTE_POST = gql`
 `;
 
 export const ADD_POST_COMMENT = gql`
-  mutation postPostComment($postId: ID!, $body: String!) {
+  mutation newPostComment($postId: ID!, $body: String!) {
     addPostComment(postId: $postId, body: $body) {
       ...CommentDetails
     }
