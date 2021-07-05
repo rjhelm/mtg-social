@@ -3,7 +3,7 @@ import storage from '../utils/localStorage';
 
 const AuthContext = createContext({
   user: null,
-  setUser: (userData) => {},
+  setUser: (_userData) => {},
   logoutUser: () => {},
 });
 

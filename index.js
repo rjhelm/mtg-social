@@ -1,7 +1,6 @@
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const db = require("./db");
-const cors = require("cors");
 const typeDefs = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers");
 const { PORT } = require("./utils/config");
@@ -9,18 +8,21 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors());
-
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
-	context: ({ req }) => ({ req }),
+	context: ({ req }) => ({ req })
 });
 
-server.applyMiddleware({ app });
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+server.applyMiddleware({ app });
+
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname, "./client/build/index.html")));
+}
 
 db.once("open", () => {
 	app.listen(PORT, () => {
@@ -29,6 +31,3 @@ db.once("open", () => {
 	});
 });
 
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "./client/build/index.html")));
-}
