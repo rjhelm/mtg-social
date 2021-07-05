@@ -13,8 +13,6 @@
 
 ## Table of contents
 
-Use for instance <https://github.com/ekalinin/github-markdown-toc>:
-
 > * [mtg-social](#mtg-social)
 >   * [About](#about)
 >   * [Table of contents](#table-of-contents)
