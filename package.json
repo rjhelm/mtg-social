@@ -10,12 +10,9 @@
     "server": "nodemon index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":      "NPM_CONFIG_PRODUCTION=false npm install --prefix client        && npm run build --prefix client"  
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client        && npm run build --prefix client"
   },
-  
   "author": "Ryan Helm",
-  
-  
   "dependencies": {
     "apollo-server": "^2.25.2",
     "apollo-server-express": "^2.25.2",
@@ -31,10 +28,10 @@
     "graphql-upload": "^12.0.0",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.0",
+    "mongoose": "^5.13.2",
     "mongoose-unique-validator": "^2.0.3"
   },
   "devDependencies": {
-    "eslint": "^7.29.0"
+    "eslint": "^7.30.0"
   }
 }
