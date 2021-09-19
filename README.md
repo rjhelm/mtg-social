@@ -1,9 +1,10 @@
 # MTG Social
 * [Deployed MTG Social](https://socialist-loonie-29332.herokuapp.com/)
-## About
+* 
+## Project
 
 * This is a project utilizing MERN stack technology,
-* Full Stack Discussion Type app for Magic the Gathering Players.
+* Full Stack Discussion app for Magic the Gathering Players.
 * Post game requests, deck questions, card discussion and more.
 
 ![Home](https://github.com/rjhelm/mtg-social/blob/main/assets/homepage.PNG?raw=true)
@@ -14,9 +15,9 @@
 ## Table of contents
 
 > * [mtg-social](#mtg-social)
->   * [About](#about)
+>   * [Project](#project)
 >   * [Table of contents](#table-of-contents)
->   * [Usage](#usage)
+>   * [About](#about)
 >     * [Features](#features)
 >     * [Content](#content)
 >     * [Deploy (how to install build product)](#deploy-how-to-install-build-product)
@@ -24,16 +25,18 @@
 >   * [Contributing / Reporting issues](#contributing--reporting-issues)
 >   * [License](#license)
 
-### Usage
+### About
 
-npm i && cd client npm i
+Project created after seeing several programs and sites creating a paywall to use the resources for finding games with active players. I wanted to create an open discussion application that would allow users to find games with other players, discuss the decks, cards, and sites they use to play.
 
-npm start (development server)
+Looking at other websites and how they structured the databse, user authentication, and what I should include gave me the inspiration for alot of the features I implemented in this project. A big part of finding a game with other players is making sure that everyone is playing within a specific power level so it is fun for everyone involved. Channels were what I looked at first but decided on specific tags for power level so users didn't have to join specific channels but instead could search for tags at the power level they wanted to play. 
 
 ### Features
 
-head to graphql playground for queries </ br>
-react front-end make changes with app running
+The website gives users the ability to create posts, they are able to tag the posts with what they are posting about. This allows other users to find games, discussions, questions, and once in the post comment from there. 
+This requires user authentication for login, signup, etc. 
+Search functions are implemented to so you can be as broad or specific as needed to find what posts you want to see at the time.
+More features to come for sure as I would love to expand on this in so many ways. 
 
 ### Content
 
